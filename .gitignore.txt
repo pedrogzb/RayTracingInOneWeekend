@@ -1,5 +1,3 @@
 # ignorar archivos de proyecto
-**.vcxproj*
-**.sln
-# ignorar carpeta de archivos ejecutables
-*/x64/*
+.sln
+
