@@ -5,7 +5,9 @@
 
 #include "color.h"
 #include "hittable.h"
+
 #include <iostream>
+#include <fstream>
 
 
 class camera {
@@ -15,8 +17,10 @@ class camera {
 
         void render(const hittable& world) {
             initialize();
+            std::ofstream file;
+            file.open("image.ppm");
 
-            std::cout << "P3\n" << image_width << ' ' << image_height << "\n255\n";
+            file << "P3\n" << image_width << ' ' << image_height << "\n255\n";
 
             for (int j = 0; j < image_height; ++j) {
                 std::clog << "\rScanlines remaining: " << (image_height - j) << ' ' << std::flush;
@@ -26,11 +30,13 @@ class camera {
                     ray r(center, ray_direction);
 
                     color pixel_color = ray_color(r, world);
-                    write_color(std::cout, pixel_color);
+                    write_color(file, pixel_color);
                 }
             }
 
             std::clog << "\rDone.                 \n";
+
+            file.close();
         }
 
     private:

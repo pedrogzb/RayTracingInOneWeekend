@@ -6,9 +6,6 @@
 #include "sphere.h"
 #include "camera.h"
 
-#include <iostream>
-#include <fstream>
-
 color ray_color(const ray& r, const hittable& world) {
     hit_record rec;
     if (world.hit(r, interval(0,infinity), rec)) {
@@ -20,8 +17,6 @@ color ray_color(const ray& r, const hittable& world) {
 }
 int main() {
 
-    std::ofstream file;
-    file.open("image.ppm");
     //World
     hittable_list world;
 
@@ -35,6 +30,5 @@ int main() {
 
     cam.render(world);
 
-    file.close();
     return 0;
 }
