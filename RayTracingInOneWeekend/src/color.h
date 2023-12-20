@@ -7,6 +7,9 @@
 
 using color = vec3;
 
+double linear_to_gamma(double c) {
+	return pow(c, 0.4545);
+}
 void write_color(std::ostream &out, color pixel_color, int samples_per_pixel){
 	auto r = pixel_color.x();
 	auto g = pixel_color.y();
@@ -16,6 +19,12 @@ void write_color(std::ostream &out, color pixel_color, int samples_per_pixel){
 	r *= scale;
 	g *= scale;
 	b *= scale;
+
+	// Apply the linear to gamma transform.
+	r = linear_to_gamma(r);
+	g = linear_to_gamma(g);
+	b = linear_to_gamma(b);
+
 	
 	static const interval intensity(0.000, 0.999);
 
