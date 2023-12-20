@@ -31,7 +31,7 @@ class sphere : hittable {
             return true;
         }
 	private:
-		vec3 center;
+        point3 center;
 		double radius;
 };
 #endif 
