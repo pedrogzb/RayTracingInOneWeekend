@@ -1,5 +1,5 @@
 # ignorar archivos de proyecto
-*.vcxproj*
-*.sln
+/RayTracingInOneWeekend/*.vcxproj*
+/RayTracingInOneWeekend/*.sln
 # ignorar carpeta de archivos ejecutables
 */x64/*
