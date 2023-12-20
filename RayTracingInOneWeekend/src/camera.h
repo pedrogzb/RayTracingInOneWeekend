@@ -99,7 +99,12 @@ class camera {
 
             if (world.hit(r, interval(0.001, infinity), rec)) {
                 vec3 direction = rec.normal + random_unit_vector();
-                return 0.5 * ray_color(ray(rec.p,direction), depth-1, world);
+                double t;
+                if (depth == 50) {
+                    t = (r.direction().x() + 16.0/9.0)*0.5*(9.0/16.0);
+                    t = (t < 0.2) ? 0.0 : ((t < 0.4) ? 0.2 : ((t < 0.6) ? 0.4 : ((t < 0.8) ? 0.6 : 1.0)));
+                }
+                return t * ray_color(ray(rec.p,direction), depth-1, world);
             }
 
             vec3 unit_direction = unit_vector(r.direction());
