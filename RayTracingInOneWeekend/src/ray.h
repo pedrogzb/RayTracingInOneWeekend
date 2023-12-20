@@ -21,4 +21,4 @@ class ray {
 
 };
 
-#endif // !RAY_H
+#endif 
