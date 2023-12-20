@@ -6,7 +6,7 @@
 #include "vec3.h"
 
 double hit_sphere(const point3& center, double radius,const ray& r) {
-    vec3 oc = r.origing() - center;
+    vec3 oc = r.origin() - center;
     auto a = r.direction().length_squared();
     auto half_b = dot(oc, r.direction());
     auto c = oc.length_squared() - radius * radius;
