@@ -3,7 +3,7 @@
 
 #include "hittable.h"
 #include "vec3.h"
-class sphere : hittable {
+class sphere : public hittable {
 	public:
 		sphere(vec3 _center,double _radius):center(_center),radius(_radius){}
         bool hit(const ray& r, double ray_tmin, double ray_tmax, hit_record& rec) const override {
@@ -26,7 +26,8 @@ class sphere : hittable {
 
             rec.t = root;
             rec.p = r.at(rec.t);
-            rec.normal = (rec.p - center) / radius;
+            vec3 outward_normal = (rec.p - center) / radius;
+            rec.set_face_normal(r, outward_normal);
 
             return true;
         }
